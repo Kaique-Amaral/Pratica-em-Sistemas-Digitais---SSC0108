@@ -1,0 +1,88 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity elevador is
+    port (
+        CLOCK     : in  std_logic;
+        RESET     : in  std_logic;
+        andar_req : in  std_logic_vector(3 downto 0);
+        LEDR      : out std_logic_vector(2 downto 0);
+        HEX0, HEX1: out std_logic_vector(6 downto 0)
+    );
+end entity;
+
+architecture Behavioral of elevador is
+
+    type estado_type is (PARADO, SUBINDO, DESCENDO);
+    signal estado : estado_type := PARADO;
+
+    signal andar_atual : unsigned(3 downto 0) := (others => '0');
+    signal andar_desejado : unsigned(3 downto 0);
+
+begin
+    andar_desejado <= unsigned(andar_req);
+
+    process (CLOCK, RESET)
+    begin
+        if RESET = '1' then
+            andar_atual <= (others => '0');
+            estado <= PARADO;
+        elsif rising_edge(CLOCK) then
+            case estado is
+                when PARADO =>
+                    if andar_desejado > andar_atual then
+                        estado <= SUBINDO;
+                    elsif andar_desejado < andar_atual then
+                        estado <= DESCENDO;
+                    else
+                        estado <= PARADO;
+                    end if;
+
+                when SUBINDO =>
+                    if andar_atual < andar_desejado then
+                        andar_atual <= andar_atual + 1;
+                    else
+                        estado <= PARADO;
+                    end if;
+
+                when DESCENDO =>
+                    if andar_atual > andar_desejado then
+                        andar_atual <= andar_atual - 1;
+                    else
+                        estado <= PARADO;
+                    end if;
+            end case;
+        end if;
+    end process;
+
+    -- LEDs de estado
+    LEDR <= "001" when estado = PARADO else
+            "010" when estado = SUBINDO else
+            "100";
+
+    -- Mostradores de 7 segmentos
+    HEX0 <= to_7seg(std_logic_vector(andar_req));   -- andar desejado
+    HEX1 <= to_7seg(std_logic_vector(andar_atual)); -- andar atual
+
+    -- Conversor decimal para 7 segmentos
+    function to_7seg(b : std_logic_vector(3 downto 0)) return std_logic_vector is
+        variable seg : std_logic_vector(6 downto 0);
+    begin
+        case b is
+            when "0000" => seg := "1000000"; -- 0
+            when "0001" => seg := "1111001"; -- 1
+            when "0010" => seg := "0100100"; -- 2
+            when "0011" => seg := "0110000"; -- 3
+            when "0100" => seg := "0011001"; -- 4
+            when "0101" => seg := "0010010"; -- 5
+            when "0110" => seg := "0000010"; -- 6
+            when "0111" => seg := "1111000"; -- 7
+            when "1000" => seg := "0000000"; -- 8
+            when "1001" => seg := "0010000"; -- 9
+            when others => seg := "1111111"; -- Apagado
+        end case;
+        return seg;
+    end function;
+
+end Behavioral;

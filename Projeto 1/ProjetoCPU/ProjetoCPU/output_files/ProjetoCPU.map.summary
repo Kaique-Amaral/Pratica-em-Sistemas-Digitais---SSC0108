@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Oct 12 19:30:57 2025
+Quartus Prime Version : 24.1std.0 Build 1077 03/04/2025 SC Lite Edition
+Revision Name : ProjetoCPU
+Top-level Entity Name : ProjetoCPU
+Family : Cyclone IV E
+Total logic elements : 144
+    Total combinational functions : 140
+    Dedicated logic registers : 34
+Total registers : 34
+Total pins : 92
+Total virtual pins : 0
+Total memory bits : 4,096
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

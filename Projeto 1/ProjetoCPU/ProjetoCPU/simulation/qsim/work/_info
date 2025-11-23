@@ -1,0 +1,75 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/16885592/Desktop/ProjetoCPU/simulation/qsim
+vhard_block
+Z1 !s110 1760308118
+!i10b 1
+!s100 @4W2h7Ue;5oU4?LC4b1]T2
+IKejL_QQU8T3PBC9?01dA`2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1760308118
+Z4 8ProjetoCPU.vo
+Z5 FProjetoCPU.vo
+L0 4206
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1760308118.000000
+Z8 !s107 ProjetoCPU.vo|
+Z9 !s90 -work|work|ProjetoCPU.vo|
+!i113 1
+Z10 o-work work
+Z11 tCvgOpt 0
+vProjetoCPU
+R1
+!i10b 1
+!s100 iA@Wohjnm>KH6@^VG<gnG0
+IK:9lTJ`1UZP3kJTR>>QUV1
+R2
+R0
+R3
+R4
+R5
+L0 32
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+R11
+n@projeto@c@p@u
+vProjetoCPU_vlg_vec_tst
+R1
+!i10b 1
+!s100 mmkFzMf_>>AD?lbn5KNnG0
+Ik:zHZ:1=0IU4Dfe<DZ7z43
+R2
+R0
+w1760308117
+8Waveform.vwf.vt
+FWaveform.vwf.vt
+L0 30
+R6
+r1
+!s85 0
+31
+R7
+!s107 Waveform.vwf.vt|
+!s90 -work|work|Waveform.vwf.vt|
+!i113 1
+R10
+R11
+n@projeto@c@p@u_vlg_vec_tst
